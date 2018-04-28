@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang=en><!--language declared-->
+    <div id="header">
+    <head><!--sets characters, title ect.-->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Nicholis Wright's Portfolio</title>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <header>
+        <h1>Nicholis Wright</h1> <!--My Website, Nicholis Wright-->
+        <table>
+              <tbody>
+                  <tr>
+                <td>
+                    <a class="table" href="index.html"><!--table that acts as a nav bar at top of the screen-->
+                        Home
+                    </a>
+                </td>
+                <td>
+                    <a class="table" href="usability.html">
+                        Usability
+                    </a>
+                </td>
+                <td>
+                    <a class="table" href="projects.html">
+                        Projects
+                    </a>
+                </td>
+                <td>
+                    <a class="table" href="academics.html">
+                        Academics & Recreation
+                    </a>
+                </td>
+             </tr>
+              </tbody>
+        </table>
+        <!--Runs the clock on main page. clock function learned from http://www.encodedna.com/html5/canvas/simple-analog-clock-using-canvas-javascript.html also this guy is a genius because this took forever to get working even with his instructions-->
+        <script> 
+    window.onload = function () {
+        setInterval(showClock, 1000);
+
+        function showClock() {
+
+            // defines what the 'canvas' element is 
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+
+            var date = new Date;
+            var angle;
+            var secHandLength = 60;
+
+            // Clear canvas and redraw every 1 second
+            ctx.clearRect(0, 0, canvas.width, canvas.height);        
+
+            OUTER_DIAL1();
+            OUTER_DIAL2();
+            CENTER_DIAL();
+            MARK_THE_HOURS();
+            MARK_THE_SECONDS();
+
+            SHOW_SECONDS();
+            SHOW_MINUTES();
+            SHOW_HOURS();
+
+            function OUTER_DIAL1() { //function for farthest outside dial
+                ctx.beginPath();
+                ctx.arc(canvas.width / 2, canvas.height / 2, secHandLength + 10, 0, Math.PI * 2);
+                ctx.strokeStyle = '#3FEEE6';
+                ctx.stroke();
+            }
+            function OUTER_DIAL2() { //function for outer ring dial
+                ctx.beginPath();
+                ctx.arc(canvas.width / 2, canvas.height / 2, secHandLength + 7, 0, Math.PI * 2);
+                ctx.strokeStyle = '#3FEEE6';
+                ctx.stroke();
+            }
+            function CENTER_DIAL() { //function for center dial
+                ctx.beginPath();
+                ctx.arc(canvas.width / 2, canvas.height / 2, 2, 0, Math.PI * 2);
+                ctx.lineWidth = 3;
+                ctx.fillStyle = '#3FEEE6';
+                ctx.strokeStyle = '#3FEEE6';
+                ctx.stroke();
+            }
+
+            function MARK_THE_HOURS() { //function to mark hours on clock
+
+                for (var i = 0; i < 12; i++) {
+                    angle = (i - 3) * (Math.PI * 2) / 12;       // drawing angle.
+                    ctx.lineWidth = 1;            // hand size.
+                    ctx.beginPath();
+
+                    var x1 = (canvas.width / 2) + Math.cos(angle) * (secHandLength);
+                    var y1 = (canvas.height / 2) + Math.sin(angle) * (secHandLength);
+                    var x2 = (canvas.width / 2) + Math.cos(angle) * (secHandLength - (secHandLength / 7));
+                    var y2 = (canvas.height / 2) + Math.sin(angle) * (secHandLength - (secHandLength / 7));
+
+                    ctx.moveTo(x1, y1);
+                    ctx.lineTo(x2, y2);
+
+                    ctx.strokeStyle = '#3FEEE6';
+                    ctx.stroke();
+                }
+            }
+
+            function MARK_THE_SECONDS() { //function for marking tiny second marks
+
+                for (var i = 0; i < 60; i++) {
+                    angle = (i - 3) * (Math.PI * 2) / 60;       // angle to draw.
+                    ctx.lineWidth = 1;            // hand size.
+                    ctx.beginPath();
+
+                    var x1 = (canvas.width / 2) + Math.cos(angle) * (secHandLength);
+                    var y1 = (canvas.height / 2) + Math.sin(angle) * (secHandLength);
+                    var x2 = (canvas.width / 2) + Math.cos(angle) * (secHandLength - (secHandLength / 30));
+                    var y2 = (canvas.height / 2) + Math.sin(angle) * (secHandLength - (secHandLength / 30));
+
+                    ctx.moveTo(x1, y1);
+                    ctx.lineTo(x2, y2);
+
+                    ctx.strokeStyle = '#3FEEE6'; //color of intersection of hands.
+                    ctx.stroke();
+                }
+            }
+
+            function SHOW_SECONDS() { //
+
+                var sec = date.getSeconds();
+                angle = ((Math.PI * 2) * (sec / 60)) - ((Math.PI * 2) / 4);
+                ctx.lineWidth = 0.5;              // hand size.
+
+                ctx.beginPath();
+                // path begins at center of clock.
+                ctx.moveTo(canvas.width / 2, canvas.height / 2);   
+                //draw length.
+                ctx.lineTo((canvas.width / 2 + Math.cos(angle) * secHandLength),
+                    canvas.height / 2 + Math.sin(angle) * secHandLength);
+
+                // draw end of seconds hand.
+                ctx.moveTo(canvas.width / 2, canvas.height / 2);    // draw from center.
+                // DRAW THE LENGTH.
+                ctx.lineTo((canvas.width / 2 - Math.cos(angle) * 20),
+                    canvas.height / 2 - Math.sin(angle) * 20);
+
+                ctx.strokeStyle = '#3FEEE6';        // hand color.
+                ctx.stroke();
+            }
+
+            function SHOW_MINUTES() {
+
+                var min = date.getMinutes();
+                angle = ((Math.PI * 2) * (min / 60)) - ((Math.PI * 2) / 4);
+                ctx.lineWidth = 1.5;              // hand color.
+
+                ctx.beginPath();
+                ctx.moveTo(canvas.width / 2, canvas.height / 2);  // begin at center of clock.
+                //draw length of hand.
+                ctx.lineTo((canvas.width / 2 + Math.cos(angle) * secHandLength / 1.1),      
+                    canvas.height / 2 + Math.sin(angle) * secHandLength / 1.1);
+
+                ctx.strokeStyle = '#3FEEE6';  // hand color.
+                ctx.stroke();
+            }
+
+            function SHOW_HOURS() {
+
+                var hour = date.getHours();
+                var min = date.getMinutes();
+                angle = ((Math.PI * 2) * ((hour * 5 + (min / 60) * 5) / 60)) - ((Math.PI * 2) / 4);
+                ctx.lineWidth = 1.5;              // hand size.
+
+                ctx.beginPath();
+                ctx.moveTo(canvas.width / 2, canvas.height / 2);     // start from center.
+                // draw length.
+                ctx.lineTo((canvas.width / 2 + Math.cos(angle) * secHandLength / 1.5),      
+                    canvas.height / 2 + Math.sin(angle) * secHandLength / 1.5);
+
+                ctx.strokeStyle = '#3FEEE6';   //hand color.
+                ctx.stroke();
+            }
+        }
+    }
+</script>
+        </header>
+        <br><br><br>
+    <body id="topofpage"> <!--used for top of page button-->
+      <div class="body">
+          <img class="img-circle" src="myphoto.JPG" style="float:right"> <!--creates the circle image-->
+          <h1>Welcome to my website!</h1>
+        <p>The purpose of this website is to allow you to get to know me a little better and to act as a portfolio for my projects.</p>
+      </div>
+    </body>
+  </div>
+  <svg style="position: fixed; right: 0; bottom: 0;" width="150" height="100"> <!--creates the svg of my initials in the bottom right corner-->
+          <circle cx="50" cy="50" r="40" stroke="#6D7993" stroke-width="6" fill="#96858F" />
+          <text fill="#ffffff" font-size="28" font-family="Aguafina Script" x="15" y="60">NGW</text>
+  </svg>    
+  <canvas id="canvas" width="400" height="400"></canvas><!--canvas for the clock-->
+  <a href="#topofpage" style="float: left; position: fixed; bottom: 0; left: 0;">top of page</a>
+</html>

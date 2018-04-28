@@ -1,0 +1,106 @@
+/* creates the background and design layout for header*/
+header{
+    font-family: monospace; 
+    color: aliceblue;
+    font-size: auto;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom: 20px;
+    width: 100%;
+    background:rgba(67, 67, 67, 0.1);
+    
+    
+     
+    
+}
+/*sets background image of website and font for body*/
+body {
+    background: url(background.jpg); 
+    color: white;
+    font-family: monospace;
+    color: white;
+    font-size: 23px; 
+    width= 100%;
+}
+/*sets width, height, and opaque gray background color to provide contrast for viewing*/
+.body {
+    width: 50%;
+    height: 50%;
+    background: rgba(67, 67, 67, 0.7);
+    padding: 40px;
+    text-align: left;
+    margin: auto;
+    color: white;
+    font-family: monospace;
+}
+/*creates the styles for the nav bar at the top*/    
+table, td{
+    color: white;
+    font-family: monospace;
+    font-size: auto;
+    background-image: url(background.jpg);
+    border: solid 3px;
+    border-color: white;
+    background-color: rgba(67, 67, 67, 0.9);
+    margin: auto;
+    float: left;
+    
+}
+/*continued table customization*/
+table{
+    margin-bottom: 7px;
+    background-color: rgba(67, 67, 67, 0.9);
+}
+/*even more table customization*/
+td{
+    margin: 2px;
+    text-align: center;
+    padding: 2px;
+     background-color: rgba(67, 67, 67, 0.9);
+}
+
+h1{
+    color: white;
+    font-family: monospace;
+}
+/*border radius is used to turn images into a circular format*/
+.img-circle {
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    border:solid 3px;
+    border-color: white;
+    background-color: rgba(67, 67, 67, 0.9);
+}
+
+a{
+  color:aliceblue;  
+}
+/*turns nav bar links red on hover*/
+a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+}
+/*nav bar links turn blue with white background when clicked*/
+a:active {
+    color: blue;
+    background-color: white;
+    text-decoration: underline;
+}
+/*makes video stay properly in layout and gives background color*/
+video{
+    padding-top: 2px;
+    background-color: rgba(67, 67, 67, 0.4);
+}
+
+audio{
+    float: right;
+}
+/*moves canvas into position*/
+canvas{
+    position: relative;
+    right:80%;
+    bottom: 0;
+    float: right;
+}
