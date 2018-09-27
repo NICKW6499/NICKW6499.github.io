@@ -15,7 +15,7 @@ header{
 }
 /*sets background image of website and font for body*/
 body {
-    background: url(background.jpg); 
+    background: url(wood.jpg); 
     color: white;
     font-family: monospace;
     color: white;
@@ -37,7 +37,7 @@ table, td{
     color: white;
     font-family: monospace;
     font-size: 19px;
-    background-image: url(background.jpg);
+    background-image: url(wood.jpg);
     border: solid 3px;
     border-color: white;
     background-color: rgba(0, 0, 0, 0.7);
